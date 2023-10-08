@@ -39,7 +39,7 @@ body
     grid-template-rows: 1fr 1fr 1fr;
 }
 
-.table > div
+.table > button
 {
     font-size: xx-large;
     display: flex;
@@ -47,3 +47,10 @@ body
     justify-content: center;
     border: 1px solid black;
 }
+
+a:visited, a
+{
+    color: black;
+    text-decoration: none;
+}
+

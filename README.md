@@ -1,6 +1,6 @@
 # Odin - Tic Tac Toe
 
-- [ ] Fill table with JS
+- [X] Fill table with JS
 - [ ] Allow the player to mark a specific spot
   - [ ] Prevent player from placing mark on existing marked spot
   - [ ] Make sure you incapsulate all of these functions inside of the three objects
