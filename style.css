@@ -48,6 +48,12 @@ body
     border: 1px solid black;
 }
 
+.table > button:disabled
+{
+    background-color: white;
+    color: black;
+}
+
 a:visited, a
 {
     color: black;
