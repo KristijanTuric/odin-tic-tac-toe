@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sofadi+One&display=swap" rel="stylesheet">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
@@ -21,8 +25,51 @@
         <button id="threetwo"></button>
         <button id="threethree"></button>
     </div>
+    <div class="winner" id="winner"></div>
     <div class="footer">
-        Made by <a href="https://github.com/KristijanTuric">Kristijan T</a></div>
-    <script src="script.js"></script>
+        Made by <a href="https://github.com/KristijanTuric">Kristijan T</a>
+    </div>
+
+    <!-- New Game Dialog -->
+    <dialog id="newGameDialog">
+        <form autocomplete="off">
+            <div class="dialogInput">
+                <label>Player One</label>
+                <input id="firstNameInput" type="text" placeholder="Rocky..." required>
+            </div>            
+
+            <div class="dialogInput">
+                <label>Player Two</label>
+                <input id="secondNameInput" type="text" placeholder="Jeff..." required="true">
+            </div>
+
+            <div class="dialogButtons">
+                <!-- 
+                    Making the Confirm button default when pressing Enter by 
+                    settings other buttons type to "button" and the Confirm 
+                    button to type "Submit"
+                -->
+                <button id="playBtn" value="default" type="submit">Play</button>
+            </div>
+        </form>
+    </dialog>
+
+    <!-- Winner Dialog -->
+    <dialog id="winnerDialog">
+        <form autocomplete="off">
+            <label id="winnerLabel"></label>
+
+            <div class="dialogButtons">
+                <!-- 
+                    Making the Confirm button default when pressing Enter by 
+                    settings other buttons type to "button" and the Confirm 
+                    button to type "Submit"
+                -->
+                <button id="resetBtn" value="default" type="submit">Reset</button>
+            </div>
+        </form>
+    </dialog>
+
+     <script src="script.js"></script>
 </body>
 </html>

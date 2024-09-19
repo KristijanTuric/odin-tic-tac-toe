@@ -12,80 +12,105 @@ const cellThreeOne = document.getElementById("threeone");
 const cellThreeTwo = document.getElementById("threetwo");
 const cellThreeThree = document.getElementById("threethree");
 
+const allCells = [cellOneOne, cellOneTwo, cellOneThree, cellTwoOne, cellTwoTwo, cellTwoThree, cellThreeOne, cellThreeTwo, cellThreeThree];
+
+const winnerDisplay = document.getElementById("winner");
+
+const winnerDialog = document.getElementById("winnerDialog");
+const winnerLabel = document.getElementById("winnerLabel");
+const resetBtn = document.getElementById("resetBtn");
+
+var game = null;
+var movesPlayed = 0;
+
+
+// When the webpage loads, show them a dialog for entering player names
+window.onload = function () {
+    newGameDialog.showModal();
+}
 //#endregion
 
 //#region Cell Buttons
 
 cellOneOne.addEventListener('click', () =>
 {
-    cellOneOne.textContent = Game.currentPlayer.simbol;
-    Gameboard.gameboard[0] = Game.currentPlayer.simbol;
+    cellOneOne.textContent = game.currentPlayer.simbol;
+    Gameboard.gameboard[0] = game.currentPlayer.simbol;
     cellOneOne.setAttribute("disabled", "disabled");
-    Game.ChangeTurn();
+    game.checkWinner();
+    game.changeTurn();
 });
 
 cellOneTwo.addEventListener('click', () =>
 {
-    cellOneTwo.textContent = Game.currentPlayer.simbol;
-    Gameboard.gameboard[1] = Game.currentPlayer.simbol;
+    cellOneTwo.textContent = game.currentPlayer.simbol;
+    Gameboard.gameboard[1] = game.currentPlayer.simbol;
     cellOneTwo.setAttribute("disabled", "disabled");
-    Game.ChangeTurn();
+    game.checkWinner();
+    game.changeTurn();
 });
 
 cellOneThree.addEventListener('click', () =>
 {
-    cellOneThree.textContent = Game.currentPlayer.simbol;
-    Gameboard.gameboard[2] = Game.currentPlayer.simbol;
+    cellOneThree.textContent = game.currentPlayer.simbol;
+    Gameboard.gameboard[2] = game.currentPlayer.simbol;
     cellOneThree.setAttribute("disabled", "disabled");
-    Game.ChangeTurn();
+    game.checkWinner();
+    game.changeTurn();
 });
 
 cellTwoOne.addEventListener('click', () =>
 {
-    cellTwoOne.textContent = Game.currentPlayer.simbol;
-    Gameboard.gameboard[3] = Game.currentPlayer.simbol;
+    cellTwoOne.textContent = game.currentPlayer.simbol;
+    Gameboard.gameboard[3] = game.currentPlayer.simbol;
     cellTwoOne.setAttribute("disabled", "disabled");
-    Game.ChangeTurn();
+    game.checkWinner();
+    game.changeTurn();
 });
 
 cellTwoTwo.addEventListener('click', () =>
 {
-    cellTwoTwo.textContent = Game.currentPlayer.simbol;
-    Gameboard.gameboard[4] = Game.currentPlayer.simbol;
+    cellTwoTwo.textContent = game.currentPlayer.simbol;
+    Gameboard.gameboard[4] = game.currentPlayer.simbol;
     cellTwoTwo.setAttribute("disabled", "disabled");
-    Game.ChangeTurn();
+    game.checkWinner();
+    game.changeTurn();
 });
 
 cellTwoThree.addEventListener('click', () =>
 {
-    cellTwoThree.textContent = Game.currentPlayer.simbol;
-    Gameboard.gameboard[5] = Game.currentPlayer.simbol;
+    cellTwoThree.textContent = game.currentPlayer.simbol;
+    Gameboard.gameboard[5] = game.currentPlayer.simbol;
     cellTwoThree.setAttribute("disabled", "disabled");
-    Game.ChangeTurn();
+    game.checkWinner();
+    game.changeTurn();
 });
 
 cellThreeOne.addEventListener('click', () =>
 {
-    cellThreeOne.textContent = Game.currentPlayer.simbol;
-    Gameboard.gameboard[6] = Game.currentPlayer.simbol;
+    cellThreeOne.textContent = game.currentPlayer.simbol;
+    Gameboard.gameboard[6] = game.currentPlayer.simbol;
     cellThreeOne.setAttribute("disabled", "disabled");
-    Game.ChangeTurn();
+    game.checkWinner();
+    game.changeTurn();
 });
 
 cellThreeTwo.addEventListener('click', () =>
 {
-    cellThreeTwo.textContent = Game.currentPlayer.simbol;
-    Gameboard.gameboard[7] = Game.currentPlayer.simbol;
+    cellThreeTwo.textContent = game.currentPlayer.simbol;
+    Gameboard.gameboard[7] = game.currentPlayer.simbol;
     cellThreeTwo.setAttribute("disabled", "disabled");
-    Game.ChangeTurn();
+    game.checkWinner();
+    game.changeTurn();
 });
 
 cellThreeThree.addEventListener('click', () =>
 {
-    cellThreeThree.textContent = Game.currentPlayer.simbol;
-    Gameboard.gameboard[8] = Game.currentPlayer.simbol;
+    cellThreeThree.textContent = game.currentPlayer.simbol;
+    Gameboard.gameboard[8] = game.currentPlayer.simbol;
     cellThreeThree.setAttribute("disabled", "disabled");
-    Game.ChangeTurn();
+    game.checkWinner();
+    game.changeTurn();
 });
 //#endregion
 
@@ -114,7 +139,7 @@ const Gameboard = (() =>
 })();
 
 // Player object
-const Player = (name, simbol) =>
+function createPlayer (name, simbol)
 {
     this.name = name;
     this.simbol = simbol;
@@ -123,47 +148,110 @@ const Player = (name, simbol) =>
 }
 
 // Game object - control the flow of the game
-const Game = (() =>
+function createGame (firstPlayer, secondPlayer)
 {
-    const firstPlayer = Player("TestOne", "X");
-    const secondPlayer = Player("TestTwo", "Y");
+    this.firstPlayer = firstPlayer;
+    this.secondPlayer = secondPlayer;
 
-    const currentPlayer = firstPlayer;
-
-    // Enter player names and simbols
-    const PlayerEntry = () =>
-    {
-
-    };
-
-    // Starts the game
-    const Play = () =>
-    {
-        
-    };
+    var currentPlayer = firstPlayer;
 
     // Makes the check to see if we have a winner
-    const CheckWinner = () =>
+    // Needs to be checked after every move
+    const checkWinner = () =>
     {
+        movesPlayed += 1;
+
+        // Rows
+        if (Gameboard.gameboard[0] != undefined && Gameboard.gameboard[0] === Gameboard.gameboard[1] && Gameboard.gameboard[1] === Gameboard.gameboard[2]) displayWinner(getPlayerFromSimbol(Gameboard.gameboard[2]));
+        if (Gameboard.gameboard[3] != undefined && Gameboard.gameboard[3] === Gameboard.gameboard[4] && Gameboard.gameboard[4] === Gameboard.gameboard[5]) displayWinner(getPlayerFromSimbol(Gameboard.gameboard[5]));
+        if (Gameboard.gameboard[6] != undefined && Gameboard.gameboard[6] === Gameboard.gameboard[7] && Gameboard.gameboard[7] === Gameboard.gameboard[8]) displayWinner(getPlayerFromSimbol(Gameboard.gameboard[8]));
+
+        // Columns
+        if (Gameboard.gameboard[0] != undefined && Gameboard.gameboard[0] === Gameboard.gameboard[3] && Gameboard.gameboard[3] === Gameboard.gameboard[6]) displayWinner(getPlayerFromSimbol(Gameboard.gameboard[6]));
+        if (Gameboard.gameboard[1] != undefined && Gameboard.gameboard[1] === Gameboard.gameboard[4] && Gameboard.gameboard[4] === Gameboard.gameboard[7]) displayWinner(getPlayerFromSimbol(Gameboard.gameboard[7]));
+        if (Gameboard.gameboard[2] != undefined && Gameboard.gameboard[2] === Gameboard.gameboard[5] && Gameboard.gameboard[5] === Gameboard.gameboard[8]) displayWinner(getPlayerFromSimbol(Gameboard.gameboard[8]));
+
+        // Diagonals
+        if (Gameboard.gameboard[0] != undefined && Gameboard.gameboard[0] === Gameboard.gameboard[4] && Gameboard.gameboard[4] === Gameboard.gameboard[8]) displayWinner(getPlayerFromSimbol(Gameboard.gameboard[8]));
+        if (Gameboard.gameboard[2] != undefined && Gameboard.gameboard[2] === Gameboard.gameboard[4] && Gameboard.gameboard[4] === Gameboard.gameboard[6]) displayWinner(getPlayerFromSimbol(Gameboard.gameboard[6]));
+
         
+        if (movesPlayed === 9) displayWinner("Draw");
     }
 
     // Change the players turn from one to the other
-    const ChangeTurn = () =>
+    const changeTurn = () =>
     {
-        if (Game.currentPlayer === firstPlayer) Game.currentPlayer = secondPlayer;
-        else Game.currentPlayer = firstPlayer;
+        // console.log(Game.currentPlayer.name + " made his/her move...")
+        if (game.currentPlayer === firstPlayer) game.currentPlayer = secondPlayer;
+        else game.currentPlayer = firstPlayer;
     };
 
-    return {currentPlayer, ChangeTurn};
+    // Returns the player name, depending on the simbol passed in
+    const getPlayerFromSimbol = (simbol) => 
+    {
+        if (simbol === firstPlayer.simbol) return firstPlayer.name;
+        else return secondPlayer.name;
+    };
 
-})();
+    // displays the winner
+    const displayWinner = (name) =>
+    {
+        if (name === "Draw") winnerLabel.textContent = "It is a DRAW";
+        else
+        {
+            winnerLabel.textContent = name + " is the winner";
+        }
+        winnerDialog.showModal();
+    };
 
-// Console testing
+    return {currentPlayer, changeTurn, checkWinner, movesPlayed};
 
-console.log(Gameboard.gameboard[7]);
-const firstPlayer = Player("Mike", "X");
-console.log(firstPlayer.simbol);
-// Gameboard.gameboard[3] = 'E';
-Gameboard.displayGameboard();
-console.log(Game.currentPlayer);
+};
+
+//#region New Game
+
+const newGameDialog = document.getElementById("newGameDialog");
+const firstNameInput = document.getElementById("firstNameInput");
+const secondNameInput = document.getElementById("secondNameInput");
+const playBtn = document.getElementById("playBtn");
+
+playBtn.addEventListener('click', (event) => 
+{
+    // Prevents the button from refreshing the page upon clicking it
+    event.preventDefault();
+
+    if (firstNameInput.value == "" || secondNameInput.value == "")
+    {
+        newGameDialog.style.borderColor = "red";
+    }
+    else
+    {
+        const firstPlayer = createPlayer(firstNameInput.value, "X");
+        const secondPlayer = createPlayer(secondNameInput.value, "Y");
+        game = createGame(firstPlayer, secondPlayer);
+        newGameDialog.close();
+    }
+
+});
+
+//#endregion
+
+//#region Winner Display
+
+resetBtn.addEventListener('click', (event) => 
+{
+    event.preventDefault();
+
+    // Reset the gameboard and table display
+    for (let i = 0; i < 9; i++) {
+        Gameboard.gameboard[i] = null;
+        allCells[i].textContent = null;
+        if (allCells[i].hasAttribute("disabled")) allCells[i].removeAttribute("disabled");
+    }
+    movesPlayed = 0;
+
+    winnerDialog.close();
+});
+
+//#endregion

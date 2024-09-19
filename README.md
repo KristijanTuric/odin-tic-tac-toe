@@ -1,12 +1,16 @@
 # Odin - Tic Tac Toe
 
 - [X] Fill table with JS
-- [ ] Allow the player to mark a specific spot
-  - [ ] Prevent player from placing mark on existing marked spot
-  - [ ] Make sure you incapsulate all of these functions inside of the three objects
-- [ ] Logic for when the game is over (Winner, Loser, Draw)
+- [X] Allow the player to mark a specific spot
+  - [X] Prevent player from placing mark on existing marked spot
+  - [X] Make sure you incapsulate all of these functions inside of the three objects
+- [X] Logic for when the game is over (Winner, Loser, Draw)
 - [ ] User Inteface
-  - [ ] Allow player to put in their names
-  - [ ] Start/Restart button
-  - [ ] Congratulate the winning player
+  - [X] Allow player to put in their names
+  - [X] Start/Restart button
+  - [X] Congratulate the winning player
+  - [X] Better font for UI
+  - [ ] Display whose turn it is
+  - [ ] Improve button style
+  - [ ] Add score keeping
 - [ ] Create an AI to play against the player
