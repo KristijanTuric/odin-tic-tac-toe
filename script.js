@@ -20,6 +20,12 @@ const winnerDialog = document.getElementById("winnerDialog");
 const winnerLabel = document.getElementById("winnerLabel");
 const resetBtn = document.getElementById("resetBtn");
 
+const playerTurn = document.getElementById("playerTurn");
+
+// Player scores
+const scoreFirstPlayer = document.getElementById("scoreFirstPlayer");
+const scoreSecondPlayer = document.getElementById("scoreSecondPlayer");
+
 var game = null;
 var movesPlayed = 0;
 
@@ -143,8 +149,9 @@ function createPlayer (name, simbol)
 {
     this.name = name;
     this.simbol = simbol;
+    this.score = 0;
 
-    return {name, simbol};
+    return {name, simbol, score};
 }
 
 // Game object - control the flow of the game
@@ -182,9 +189,9 @@ function createGame (firstPlayer, secondPlayer)
     // Change the players turn from one to the other
     const changeTurn = () =>
     {
-        // console.log(Game.currentPlayer.name + " made his/her move...")
         if (game.currentPlayer === firstPlayer) game.currentPlayer = secondPlayer;
         else game.currentPlayer = firstPlayer;
+        playerTurn.textContent = game.currentPlayer.name + " - " + game.currentPlayer.simbol;
     };
 
     // Returns the player name, depending on the simbol passed in
@@ -202,10 +209,35 @@ function createGame (firstPlayer, secondPlayer)
         {
             winnerLabel.textContent = name + " is the winner";
         }
+
+        // Update the score
+        if (name === this.firstPlayer.name) this.firstPlayer.score += 1;
+        else if (name === this.secondPlayer.name) this.secondPlayer.score += 1;
+
+        game.updateScoreDisplay();
+
         winnerDialog.showModal();
     };
 
-    return {currentPlayer, changeTurn, checkWinner, movesPlayed};
+    // Returns the name of the first player
+    const getFirstPlayerName = () => 
+    {
+        return this.firstPlayer.name;
+    }
+
+    const getSecondPlayerName = () => 
+    {
+        return this.secondPlayer.name;
+    }
+
+    // Update score display
+    const updateScoreDisplay = () =>
+    {
+        scoreFirstPlayer.textContent = this.firstPlayer.name + ": " + this.firstPlayer.score;
+        scoreSecondPlayer.textContent = this.secondPlayer.name + ": " + this.secondPlayer.score;
+    }
+
+    return {currentPlayer, changeTurn, checkWinner, movesPlayed, getFirstPlayerName, getSecondPlayerName, updateScoreDisplay};
 
 };
 
@@ -228,8 +260,10 @@ playBtn.addEventListener('click', (event) =>
     else
     {
         const firstPlayer = createPlayer(firstNameInput.value, "X");
-        const secondPlayer = createPlayer(secondNameInput.value, "Y");
+        const secondPlayer = createPlayer(secondNameInput.value, "O");
         game = createGame(firstPlayer, secondPlayer);
+        playerTurn.textContent = game.getFirstPlayerName() + " - " + "X"; 
+        game.updateScoreDisplay();
         newGameDialog.close();
     }
 

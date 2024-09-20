@@ -10,7 +10,7 @@
   - [X] Start/Restart button
   - [X] Congratulate the winning player
   - [X] Better font for UI
-  - [ ] Display whose turn it is
-  - [ ] Improve button style
-  - [ ] Add score keeping
+  - [X] Display whose turn it is
+  - [ ] Improve button style & Details style
+  - [X] Add score keeping
 - [ ] Create an AI to play against the player

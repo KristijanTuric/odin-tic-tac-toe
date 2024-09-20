@@ -115,3 +115,9 @@ dialog
     font-size: 30px;
     margin-top: 10px;
 }
+
+.details 
+{
+    margin-top: 20px;
+    font-size: 24px;
+}
