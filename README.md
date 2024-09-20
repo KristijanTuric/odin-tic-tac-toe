@@ -14,3 +14,4 @@
   - [ ] Improve button style & Details style
   - [X] Add score keeping
 - [ ] Create an AI to play against the player
+Website: https://kristijanturic.github.io/odin-tic-tac-toe/
