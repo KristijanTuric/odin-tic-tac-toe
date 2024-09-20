@@ -204,6 +204,8 @@ function createGame (firstPlayer, secondPlayer)
     // displays the winner
     const displayWinner = (name) =>
     {
+        movesPlayed = 0;
+
         if (name === "Draw") winnerLabel.textContent = "It is a DRAW";
         else
         {
@@ -283,7 +285,6 @@ resetBtn.addEventListener('click', (event) =>
         allCells[i].textContent = null;
         if (allCells[i].hasAttribute("disabled")) allCells[i].removeAttribute("disabled");
     }
-    movesPlayed = 0;
 
     winnerDialog.close();
 });
