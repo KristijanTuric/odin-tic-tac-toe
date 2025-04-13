@@ -1,6 +1,6 @@
 # Odin - Tic Tac Toe
 
-Demo: [Tic Tac Tow](https://kristijanturic.github.io/odin-tic-tac-toe/)
+Demo: [Tic Tac Toe](https://kristijanturic.github.io/odin-tic-tac-toe/)
 
 ![Demo Preview](preview.png)
 
