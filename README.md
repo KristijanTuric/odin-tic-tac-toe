@@ -1,5 +1,9 @@
 # Odin - Tic Tac Toe
 
+Demo: [Tic Tac Tow](https://kristijanturic.github.io/odin-tic-tac-toe/)
+
+![Demo Preview](preview.png)
+
 - [X] Fill table with JS
 - [X] Allow the player to mark a specific spot
   - [X] Prevent player from placing mark on existing marked spot
@@ -14,4 +18,3 @@
   - [ ] Improve button style & Details style
   - [X] Add score keeping
 - [ ] Create an AI to play against the player
-Website: https://kristijanturic.github.io/odin-tic-tac-toe/
